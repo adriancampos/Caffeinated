@@ -16,3 +16,8 @@ jobs:
       uses: warrenbuckley/Setup-MSBuild@v1
     - name: Build with MSBuild
       run: msbuild  Caffeinated.sln -p:Configuration=Release
+    - name: Upload artifact
+      uses: actions/upload-artifact@v1.0.0
+      with:
+        name: Caffeinated.zip
+        path: D:\a\Caffeinated\Caffeinated\bin\Release\Caffeinated.exe
