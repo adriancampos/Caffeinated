@@ -1,0 +1,23 @@
+name: NetFrameWork.Legacy.CI
+
+on: [push]
+ 
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+    - uses: actions/checkout@v1
+    - name: Setup Nuget.exe
+      uses: warrenbuckley/Setup-Nuget@v1
+    - name: Restore packages
+      run: nuget restore Caffeinated.sln
+    - name: Setup MSBuild.exe
+      uses: warrenbuckley/Setup-MSBuild@v1
+    - name: Build with MSBuild
+      run: msbuild  Caffeinated.sln -p:Configuration=Release
+    - name: Upload artifact
+      uses: actions/upload-artifact@v1.0.0
+      with:
+        name: Caffeinated
+        path: D:\a\Caffeinated\Caffeinated\bin\Release\Caffeinated.exe
